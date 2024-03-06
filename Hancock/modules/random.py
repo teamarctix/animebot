@@ -13,18 +13,18 @@ async def fetch_random_mongodb_data(client, message):
         url = "mongodb+srv://a1:a1@cluster0.0pola4b.mongodb.net/?retryWrites=true&w=majority"
 
         # Connect to the MongoDB cluster
-        client = pymongo.MongoClient(url)
+        mongo_client = pymongo.MongoClient(url)
 
         # Specify the 'wholedata' database
-        db = client['wholedata']
+        mongo_db = mongo_client['wholedata']
 
         # Assuming you have a collection named 'data' in the 'wholedata' database
-        collection = db['data']
+        mongo_collection = mongo_db['data']
 
         # Fetch a random document excluding those with 'bot_username' as None
-        random_document = collection.aggregate([
-            {'$match': {'bot_username': {'$ne': None}}},
-            {'$sample': {'size': 1}}
+        random_document = mongo_collection.aggregate([
+            { '$match': { 'bot_username': { '$exists': True, '$ne': None, '$ne': "None" } } },
+            { '$sample': { 'size': 1 } }
         ]).next()
 
         # Format the data for display
