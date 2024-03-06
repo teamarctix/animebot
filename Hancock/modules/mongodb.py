@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from Hancock import *
 
-@app.on_message(
+@Hancock.on_message(
     filters.command("mdb")
     & filters.private
     & filters.user(OWNER_ID)
