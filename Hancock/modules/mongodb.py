@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from Arctix import Arctix as app
+from Hancock import *
 
 @app.on_message(
     filters.command("mdb")
