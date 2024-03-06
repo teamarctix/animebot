@@ -1,0 +1,12 @@
+python-dotenv
+pyrogram
+tgcrypto
+motor
+asyncio==3.4.3
+pymongo[srv]
+dnspython
+pymongo
+telegraph
+bs4
+git+https://github.com/Ripeey/Conversation-Pyrogram
+convopyro
