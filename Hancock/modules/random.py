@@ -6,7 +6,6 @@ import random
 @Hancock.on_message(
     filters.command("random")
     & filters.private
-    & filters.user(OWNER_ID)
 )
 async def fetch_random_mongodb_data(client, message):
     try:
@@ -22,14 +21,11 @@ async def fetch_random_mongodb_data(client, message):
         # Assuming you have a collection named 'data' in the 'wholedata' database
         collection = db['data']
 
-        # Add a match stage to filter documents where bot_username is not None
-        match_stage = { '$match': { 'bot_username': { '$ne': None } } }
-
-        # Include the match stage in the aggregation pipeline
-        aggregation_pipeline = [match_stage, { '$sample': { 'size': 1 } }]
-
-        # Fetch a random document from the collection with the updated pipeline
-        random_document = collection.aggregate(aggregation_pipeline).next()
+        # Fetch a random document excluding those with 'bot_username' as None
+        random_document = collection.aggregate([
+            {'$match': {'bot_username': {'$ne': None}}},
+            {'$sample': {'size': 1}}
+        ]).next()
 
         # Format the data for display
         formatted_text = (
@@ -47,4 +43,3 @@ async def fetch_random_mongodb_data(client, message):
 
     except Exception as e:
         print(f"Error fetching random MongoDB data: {e}")
-  
