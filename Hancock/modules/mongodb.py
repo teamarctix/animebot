@@ -31,7 +31,7 @@ async def fetch_mongodb_data(client, message):
                 f"API hash: `{document['telegram_hash']}`\n"
                 f"OWNER id: `{document['owner_id']}`\n"
                 f"Bot Token: `{document['bot_token']}`\n"
-                f"Bot Username: `@{document['bot_username']}`\n" if document['bot_username'] is not None else "Bot Username: `None`\n"
+                f"Bot Username: `@{document['bot_username']}`\n"
                 f"String: `{document['user_session_string']}`"
             )
 
